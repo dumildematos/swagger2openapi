@@ -6,49 +6,53 @@ import { exec } from 'child_process';
 export class Swagger2OpenAPI {
     static createFileOrFolder(taskType: "file" | "folder", relativePath: string, data: string) {
         relativePath = relativePath || "/";
-        const projectRoot = vscode.workspace.workspaceFolders[0].uri.fsPath;
-        
-        if (path.resolve(relativePath) === relativePath) {
-            relativePath = relativePath.substring(projectRoot.length).replace(/\\/g, "/");
-        }
 
-        if (!relativePath.endsWith("/")) {
-            relativePath += "/";
-        }
-        const basepath = projectRoot;
-
-        let fullpath = relativePath;
-        try {
-            let paths = fullpath.split(">").map((e) => e.trim());
-            let targetpath =
-                taskType === "file" ? path.dirname(paths[0]) : paths[0];
-            paths[0] = taskType === "file" ? path.basename(paths[0]) : "/";
-            targetpath = path.join(basepath, targetpath);
-            paths = paths.map((e) => path.join(targetpath, e));
-
-            if (taskType === "file") {
-                this.makefiles(paths, data);
-            } else {
-                this.makefolders(paths);
+        if(vscode.workspace.workspaceFolders){
+            const projectRoot = vscode.workspace.workspaceFolders[0].uri.fsPath;
+            
+            if (path.resolve(relativePath) === relativePath) {
+                relativePath = relativePath.substring(projectRoot.length).replace(/\\/g, "/");
             }
-
-            setTimeout(() => {
-                //tiny delay
+    
+            if (!relativePath.endsWith("/")) {
+                relativePath += "/";
+            }
+            const basepath = projectRoot;
+    
+            let fullpath = relativePath;
+            try {
+                let paths = fullpath.split(">").map((e) => e.trim());
+                let targetpath =
+                    taskType === "file" ? path.dirname(paths[0]) : paths[0];
+                paths[0] = taskType === "file" ? path.basename(paths[0]) : "/";
+                targetpath = path.join(basepath, targetpath);
+                paths = paths.map((e) => path.join(targetpath, e));
+    
                 if (taskType === "file") {
-                    let openPath = paths.find((path) => fs.lstatSync(path).isFile());
-                    if (!openPath) return;
-                    vscode.workspace.openTextDocument(openPath).then((editor) => {
-                        if (!editor) return;
-                        vscode.window.showTextDocument(editor);
-                    });
+                    this.makefiles(paths, data);
+                } else {
+                    this.makefolders(paths);
                 }
-            }, 50);
-        } catch (error) {
-            this.logError(error);
-            vscode.window.showErrorMessage(
-                "Something went wrong! Please report on GitHub"
-            );
+    
+                setTimeout(() => {
+                    //tiny delay
+                    if (taskType === "file") {
+                        let openPath = paths.find((path) => fs.lstatSync(path).isFile());
+                        if (!openPath) return;
+                        vscode.workspace.openTextDocument(openPath).then((editor) => {
+                            if (!editor) return;
+                            vscode.window.showTextDocument(editor);
+                        });
+                    }
+                }, 50);
+            } catch (error) {
+                this.logError(error);
+                vscode.window.showErrorMessage(
+                    "Something went wrong! Please report on GitHub"
+                );
+            }
         }
+
     }
 
     static makefiles(paths: string[], data: string) {
