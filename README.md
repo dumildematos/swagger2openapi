@@ -1,71 +1,40 @@
-# swagger2openapi README
+# Swagger2OpenAPI
 
-This is the README for your extension "swagger2openapi". After writing up a brief description, we recommend including the following sections.
+Swagger2OpenAPI is a Visual Studio Code extension designed to streamline the process of converting Swagger JSON files to OpenAPI specifications. With this extension, developers can effortlessly generate OpenAPI files from Swagger JSON, enabling seamless integration with various API development workflows.
+
+![Swagger2OpenAPI Demo](https://github.com/dumildematos/swagger2openapi/raw/master/demo.gif)
+
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- **Conversion Convenience:** Easily convert Swagger JSON files to OpenAPI specifications within your Visual Studio Code environment.
+- **Customization Options:** Configure settings to specify the Swagger JSON URL, output file path, and npm command for streamlined generation.
+- **Efficient Workflow:** Execute the conversion process with a single command, enhancing productivity and reducing manual effort.
+- **Automatic Execution:** Automatically run npm commands after successful generation, facilitating further processing or integration tasks.
+- **Workspace Integration:** Seamlessly integrate OpenAPI generation into your existing VS Code workflow, ensuring a cohesive development experience.
 
-For example if there is an image subfolder under your extension project workspace:
+## Usage
 
-\!\[feature X\]\(images/feature-x.png\)
+1. Configure extension settings to define the Swagger JSON URL, output file path, and npm command.
+2. Use the command palette to trigger the OpenAPI generation process.
+3. Sit back and let the extension convert the Swagger JSON to OpenAPI format, with the option to execute additional commands upon completion.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+## Installation
 
-## Requirements
+You can install the Swagger2OpenAPI extension from the [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=swagger2openapi).
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+## Configuration
 
-## Extension Settings
+To configure Swagger2OpenAPI, use the settings available in your Visual Studio Code settings:
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+- `swagger2openapi.swaggerJsonUrl`: The Swagger JSON URL to fetch the Swagger definition.
+- `swagger2openapi.outputPathAndFileName`: The output path and filename for the generated OpenAPI file.
+- `swagger2openapi.npmCommand`: The npm command to execute after successful OpenAPI generation.
 
-For example:
+## Contributing
 
-This extension contributes the following settings:
+Contributions are welcome! If you encounter any issues or have suggestions for improvements, please feel free to open an issue or pull request on [GitHub](https://github.com/dumildematos/swagger2openapi).
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+## License
 
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+This extension is licensed under the [MIT License](LICENSE).
