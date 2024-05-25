@@ -1,25 +1,38 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
-import * as vscode from 'vscode';
+import * as vscode from "vscode";
+import * as https from "https";
+import { Swagger2OpenAPI } from "./Swagger2OpenAPI";
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
+
 export function activate(context: vscode.ExtensionContext) {
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "swagger2openapi" is now active!');
+	let disposable = vscode.commands.registerCommand('swagger2openapi.generate', async () => {
+        const swaggerJsonUrl = vscode.workspace.getConfiguration().get<string>('swagger2openapi.swaggerJsonUrl') || '';
+        const outputPathAndFileName = vscode.workspace.getConfiguration().get<string>('swagger2openapi.outputPathAndFileName') || './swagger.json';
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('swagger2openapi.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from swagger2openapi!');
-	});
+        if (!swaggerJsonUrl) {
+            vscode.window.showErrorMessage('Swagger JSON URL is not set.');
+            return;
+        }
 
-	context.subscriptions.push(disposable);
+        vscode.window.showInformationMessage('Fetching Swagger JSON...');
+
+        https.get(swaggerJsonUrl, (response) => {
+            let data = '';
+
+            response.on('data', (chunk) => {
+                data += chunk;
+            });
+
+            response.on('end', () => {
+                Swagger2OpenAPI.createFileOrFolder('file', outputPathAndFileName, data);
+            });
+        }).on('error', (err) => {
+            vscode.window.showErrorMessage(`Failed to fetch Swagger JSON: ${err.message}`);
+        });
+    });
+
+
+  context.subscriptions.push(disposable);
 }
 
 // This method is called when your extension is deactivated
