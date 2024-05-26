@@ -18,7 +18,7 @@ Swagger2OpenAPI is a Visual Studio Code extension designed to streamline the pro
 </p>
 
 <video width="800" controls loop autoplay> 
-  <source src="./assets/video/demo.mp4" type="video/mp4">
+  <source src="https://github.com/dumildematos/swagger2openapi/raw/master/assets/video/demo.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
