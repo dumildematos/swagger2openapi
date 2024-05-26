@@ -33,6 +33,7 @@ To configure Swagger2OpenAPI, use the settings available in your Visual Studio C
 - `swagger2openapi.outputPathAndFileName`: The output path and filename for the generated OpenAPI file.
 - `swagger2openapi.npmCommand`: The npm command to execute after successful OpenAPI generation.
 
+
 ## Contributing
 
 Contributions are welcome! If you encounter any issues or have suggestions for improvements, please feel free to open an issue or pull request on [GitHub](https://github.com/dumildematos/swagger2openapi).
