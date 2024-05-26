@@ -2,7 +2,7 @@
 
 Swagger2OpenAPI is a Visual Studio Code extension designed to streamline the process of converting Swagger JSON files to OpenAPI specifications. With this extension, developers can effortlessly generate OpenAPI files from Swagger JSON, enabling seamless integration with various API development workflows.
 
-<video width="600" controls loop autoplay> 
+<video width="800" controls loop autoplay> 
   <source src="https://github.com/dumildematos/swagger2openapi/raw/master/assets/video/demo.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
